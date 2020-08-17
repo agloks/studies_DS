@@ -41,4 +41,5 @@ class Refine:
       values_null = df[columns_null].isna().sum()
 
       filter_columns = [x for x in columns_null if (values_null[x]/df.shape[0]) < percent]
+      filter_columns = filter_columns + list( pd.DataFrame(df.isna().sum()[df.isna().sum() == 0]).T.columns )
       return filter_columns
